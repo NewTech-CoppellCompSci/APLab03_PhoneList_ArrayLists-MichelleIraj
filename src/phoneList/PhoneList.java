@@ -1,6 +1,9 @@
 package phoneList;
 
+import java.util.ArrayList;
 import java.util.Scanner;
+
+import notes01_basic_objects.Student;
 
 /*
  * Phone List
@@ -30,12 +33,16 @@ public class PhoneList {
 	 * Instance Variables
 	 */
 	
+	private ArrayList<Contact> PhoneList;
 	
 	
 	//Constructor
 	public PhoneList() {
 		//initialize instance variables
+		
+		this.PhoneList = new ArrayList<Contact>(); 
 	}
+	
 	
 	
 	/*
@@ -51,6 +58,33 @@ public class PhoneList {
 	 */
 	public void addContact() {
 		
+		Scanner inkey = new Scanner (System.in); //creates the keyboard
+		
+		System.out.println("Contact's Name: "); //prompts the user
+		String contactName = inkey.next(); //stores the data into a variable
+		
+		System.out.println("Contact's Number: "); //prompts the user
+		int contactNum = inkey.nextInt(); //stores the data into a variable 
+
+		Contact info = new Contact(contactName, contactNum); //creates a new object
+		
+		PhoneList.add(info);
+		
+		Contact temp; 
+		
+		 for (int i = 0; i < PhoneList.size(); i++) {
+	            for (int j = i + 1; j < PhoneList.size(); j++) {
+	               
+	                // to compare one string with other strings
+	                if ((PhoneList.get(i).getName()).compareTo(PhoneList.get(j).getName()) > 0) {
+	                    // switches the places of the elements
+	                    temp = PhoneList.get(i);
+	                    PhoneList.add(i, PhoneList.get(j));
+	                    PhoneList.add(j, temp);
+	                }
+	            }
+	        }
+		 System.out.println(info);
 		
 	}
 	
@@ -72,6 +106,31 @@ public class PhoneList {
 	 */
 	public void removeContact() {
 		
+		Scanner inkey = new Scanner (System.in); //creates the keyboard
+
+		System.out.println("Contact's Name: "); //prompts the user
+		String Name = inkey.next(); //stores the data into a variable
+		
+		boolean found = false; //if contact is found or not
+		
+		//goes through the array
+		for (int i = 0; i < PhoneList.size(); i++) {
+			
+			//checks if that name is there or not and removes the contact if found 
+			if (Name.equals(PhoneList.get(i).getName())) {
+				
+				System.out.println("The Contact: " + "\n" + PhoneList.get(i)); 
+				PhoneList.remove(PhoneList.get(i));
+				System.out.println("The contact has been removed");
+				found = true; //doesn't print out the wrong message
+				break; //exits so it doesn't continue checking
+			}
+		}
+		
+		//let's the user know if the contact is non-existent 
+		if (found == false) {
+			System.out.println("Contact " + Name + " is not found"); 
+		}
 		
 	}
 	
@@ -88,6 +147,14 @@ public class PhoneList {
 	 *          #################
 	 */
 	public void printList() {
+		
+		//prints out the header
+		System.out.println("-------My Contacts-------"); 
+		
+		//prints out the individual elements 
+		for(int i = 0; i < PhoneList.size(); i++) {
+			System.out.println(PhoneList.get(i));
+		}
 		
 	}
 
