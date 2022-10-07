@@ -19,15 +19,18 @@ package phoneList;
 
 public class Contact {
 
+	//instance variables
 	private String name; 
 	private int phoneNum; 
 	
+	//constructor 
 	public Contact(String name, int phoneNum) {
 		
 		this.name = name; 
 		this.phoneNum = phoneNum; 
 	}
 	
+	//getter methods 
 	public String getName() {
 		return name; 
 	}
@@ -36,6 +39,7 @@ public class Contact {
 		return phoneNum; 
 	}
 	
+	//setter methods
 	public void setName(String newName) {
 		this.name = newName;
 	}
@@ -44,6 +48,7 @@ public class Contact {
 		this.phoneNum = newPhoneNum;
 	}
 	
+	//prints out the info
 	public String toString() {
 		
 		return "Name: " + name.toString() + "\n" + "Phone Number: " + phoneNum;
